@@ -1,0 +1,16 @@
+{
+  "name": "@sjaakp/knob",
+  "version": "1.0.0",
+  "description": "Rotary web control",
+  "main": "knob.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "input",
+    "rotary",
+    "dial"
+  ],
+  "author": "sjaakpriester.nl",
+  "license": "MIT"
+}

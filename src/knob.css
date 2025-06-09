@@ -1,0 +1,24 @@
+.knob {
+    place-content: center;
+    place-items: center;
+    width: var(--knob-diameter, 6em);
+    aspect-ratio: 1;
+    border-radius: 500em;
+    div {
+        place-content: center;
+        place-items: center;
+        width: var(--knob-inner-diameter, 75%);
+        aspect-ratio: 1;
+        border-radius: 500em;
+        background-color: Canvas;
+        user-select: none;
+    }
+}
+[data-knob] {
+    display: block;
+    max-width: 6ch;
+    field-sizing: content;
+    &:focus {
+        outline-width: 1px;
+    }
+}
