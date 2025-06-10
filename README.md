@@ -1,27 +1,27 @@
-# Knob 1.0 #
+# Knob 1.1 #
 
-**Knob 1.0** is a JavaScript widget that changes `<input type="number">` into
+**Knob 1.1** is a JavaScript widget that changes `<input type="number">` into
 a rotary control (dial), which can be manipulated by the mouse or touch device.
 
-**Knob 1.0** should work in any modern browser. It is small code,
-less than 3kB in size.
+**Knob 1.1** should work in any modern browser. It is small code,
+slightly under 3kB in size.
 
-You can see **Knob 1.0** in action [here](http://www.sjaakpriester.nl/software/knob).
+You can see **Knob 1.1** in action [here](http://www.sjaakpriester.nl/software/knob).
 
-Here is **Knob 1.0**'s  [GitHub page](https://github.com/sjaakp/knob).
+Here is **Knob 1.1**'s  [GitHub page](https://github.com/sjaakp/knob).
 
 ## Install ##
 
-Install **Knob 1.0** with [npm](https://www.npmjs.com//):
+Install **Knob 1.1** with [npm](https://www.npmjs.com//):
 
 	npm i @sjaakp/knob
 
-You can also manually install **Knob 1.0** by
+You can also manually install **Knob 1.1** by
 [downloading the source in ZIP-format](https://github.com/sjaakp/knob/archive/master.zip).
 
 ## Dependencies ##
 
-**Knob 1.0** has no dependencies.
+**Knob 1.1** has no dependencies.
 
 ## Usage ##
 
@@ -29,13 +29,13 @@ You can also manually install **Knob 1.0** by
 
 Copy `knob.js` from the `dist` directory to a reachable subdirectory of your
 website. At the end of the `body` part of the HTML page,
-load the **Knob 1.0** code like this:
+load the **Knob 1.1** code like this:
 
     <script src="/<your subdirectory>/knob.js"></script>
     
 #### Load from CDN ####
 
-You may also load the **Knob 1.0** file from a content distribution
+You may also load the **Knob 1.1** file from a content distribution
 network (CDN), like so:
 
     <script src="https://unpkg.com/@sjaakp/knob/dist/knob.js"></script>
@@ -43,14 +43,13 @@ network (CDN), like so:
  
 ### Set-up ###
 
-**Knob 1.0** creates itself around a HTML `<input>` of the `number`-type,
+**Knob 1.1** creates itself around a HTML `<input>` of the `number`-type,
 most probably inside an HTML `<form>`. The `<input>` should have a `name`,
 as is common for `<form>` elements, and an `id`. 
 
 The `<input>` should also
-have an attribute `data-knob`. This doesn't need to have a value,
-but if it has the value `"ccw"`, **Knob 1.0** will operate in
-counter-clockwise mode.
+have an attribute `data-knob`. This doesn't need to have a value (although
+it can, see under 'Appearance').
 
 The HTML could look something like:
 
@@ -71,18 +70,26 @@ The HTML could look something like:
 
 No further initializing is needed.
 
-**Knob 1.0** uses the attributes of the 
+**Knob 1.1** uses the attributes of the 
 [number input](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/number "MDN"),
 `min`, `max`, and `value` in particular. There is no additional API.
 
-A limitation is that **Knob 1.0** only works with whole numbers. It won't act 
+A limitation is that **Knob 1.1** only works with whole numbers. It won't act 
 well with decimal fractions. Also, the attribute `step` should be kept at its
 default value of `"1"`.
 
 ## Appearance ##
 
-A few aspects of **Knob 1.0**'s appearance can be adapted by setting
-CSS custom properties inside the ruleset for the class of **Knob 1.0**'s
+If the attribute `data-knob` has a value of `"flip"` **Knob 1.1**'s ring
+will be upside down. If the value is `"ccw"`, **Knob 1.1** will work in
+counter-clockwise mode. Both values can also be combined.
+
+The size of the gap in the ring can be changed by setting by the 
+attribute `data-gap` to a number between 0 and 90. It is the gap size in
+degrees. The default is 30.
+
+A few aspects of **Knob 1.1**'s appearance can be adapted by setting
+CSS custom properties inside the ruleset for the class of **Knob 1.1**'s
 surrounding `<div>`: `.knob` (or, of course, any DOM-element 
 higher in the cascade). The surrounding `<div>` will have an `id` identical
 to the `id` of the `<input>` supplemented with `"-knob"`.
@@ -96,7 +103,7 @@ The properties, together with their default value:
 
 ## Inspiration ##
 
-**Knob 1.0** was inspired by Anthony Terrien's 
+**Knob 1.1** was inspired by Anthony Terrien's 
 [jQuery-Knob](https://github.com/aterrien/jQuery-Knob "GitHub"). As the name
-implies, this depends on jQuery, while **Knob 1.0** does not. On the other
+implies, this depends on jQuery, while **Knob 1.1** does not. On the other
 hand, jQuery-Knob has a few more options.
