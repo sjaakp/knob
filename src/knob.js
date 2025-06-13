@@ -1,6 +1,6 @@
 /*
  *  knob.js - transform <input type="number"> into a rotary control.
- *  Version 1.1.0
+ *  Version 1.1.1
  *  (c) Sjaak Priester, Amsterdam, 2025 MIT license
  *  https://sjaakpriester.nl/software/knob
  *  https://github.com/sjaakp/knob
@@ -18,8 +18,8 @@ function Knob(elmt)
     this.mask.appendChild(this.input);
 
     const rect = this.element.getBoundingClientRect();
-    this.x = rect.left + rect.width / 2;
-    this.y = rect.top + rect.height / 2;
+    this.x = rect.left + window.scrollX + rect.width / 2; // 1.1.1: added window.scrollX/Y
+    this.y = rect.top + window.scrollY + rect.height / 2;
 
     this.ccw = !!this.input.dataset.knob.match(/ccw/);
     this.flip = !!this.input.dataset.knob.match(/flip/);
