@@ -1,6 +1,6 @@
 /*
  *  knob.js - transform <input type="number"> into a rotary control.
- *  Version 1.1.1
+ *  Version 1.1.2
  *  (c) Sjaak Priester, Amsterdam, 2025 MIT license
  *  https://sjaakpriester.nl/software/knob
  *  https://github.com/sjaakp/knob
@@ -16,10 +16,6 @@ function Knob(elmt)
     this.mask = document.createElement('div');
     this.element.appendChild(this.mask);
     this.mask.appendChild(this.input);
-
-    const rect = this.element.getBoundingClientRect();
-    this.x = rect.left + window.scrollX + rect.width / 2; // 1.1.1: added window.scrollX/Y
-    this.y = rect.top + window.scrollY + rect.height / 2;
 
     this.ccw = !!this.input.dataset.knob.match(/ccw/);
     this.flip = !!this.input.dataset.knob.match(/flip/);
@@ -47,7 +43,7 @@ function Knob(elmt)
     }
 
     this.onPointerMove = function (evt) {
-        let arc = Math.atan2(evt.pageX - this.x, this.y - evt.pageY);
+        let arc = Math.atan2(evt.clientX - this.x, this.y - evt.clientY);
         if (! this.flip) arc += Math.PI;
         if (arc < 0) arc += 2 * Math.PI;
 
@@ -64,6 +60,9 @@ function Knob(elmt)
     }.bind(this);
 
     this.element.addEventListener('pointerdown', evt => {
+        const rect = this.element.getBoundingClientRect();
+        this.x = rect.left + rect.width / 2; // 1.1.2: initialize x/y at pointerdown
+        this.y = rect.top + rect.height / 2;
         document.addEventListener('pointerup', this.onPointerUp);
         document.addEventListener('pointermove', this.onPointerMove);
     });
@@ -110,12 +109,16 @@ Knob.prototype = {
     }
 };
 
-const style = document.createElement('style');
-style.appendChild(document.createTextNode(`.knob{place-content:center;place-items:center;width:var(--knob-diameter,6em);aspect-ratio:1;border-radius:500em;
+Knob.init = () => {
+    const style = document.createElement('style');
+    style.appendChild(document.createTextNode(`.knob{place-content:center;place-items:center;width:var(--knob-diameter,6em);aspect-ratio:1;border-radius:500em;
 div{place-content:center;place-items:center;width:var(--knob-inner-diameter,75%);aspect-ratio:1;border-radius:500em;background-color:Canvas;user-select:none}}
 [data-knob]{display:block;max-width:6ch;field-sizing:content;&:focus{outline-width:1px}}`));
-document.head.appendChild(style);
+    document.head.appendChild(style);
 
-document.querySelectorAll('[type=number][data-knob]').forEach(elt => {
-    new Knob(elt);
-});
+    document.querySelectorAll('[type=number][data-knob]').forEach(elt => {
+        new Knob(elt);
+    });
+}
+
+Knob.init();
